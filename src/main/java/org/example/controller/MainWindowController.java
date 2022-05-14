@@ -18,14 +18,13 @@ public class MainWindowController {
     void searchFirstCityAction() {
 
         String firstCity = firstCityField.getText();
-        //System.out.println(firstCity);
         APIFunctionsModel.loadweather(firstCity);
     }
 
     @FXML
     void searchSecondCityAction() {
         String secondCity = secondCityField.getText();
-        System.out.println(secondCity);
+        APIFunctionsModel.loadweather(secondCity);
 
 
     }

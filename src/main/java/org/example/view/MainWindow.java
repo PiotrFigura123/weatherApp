@@ -18,12 +18,9 @@ public class MainWindow {
             e.printStackTrace();
             return;
         }
-
         Scene scene = new Scene(parent);
-        //scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         Stage stage = new Stage();
         stage.setScene(scene);
-
         stage.setTitle("Wakacyjna stacja pogodowa");
         stage.setResizable(false);
         stage.show();
