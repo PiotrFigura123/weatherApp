@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.example.model.ActualWeather;
 import org.example.view.MainWindow;
@@ -26,6 +27,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         MainWindow mainWindow = new MainWindow();
         mainWindow.initializeStage();
+
+
 
 
     }
