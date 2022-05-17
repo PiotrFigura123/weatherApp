@@ -1,23 +1,16 @@
 package org.example.model;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import org.example.Config;
-import com.google.gson.JsonParser;
-import org.example.controller.MainWindowController;
-import org.example.view.MainWindow;
 
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 
@@ -69,9 +62,43 @@ public class APIFunctionsModel {
                 BackgroundSize.DEFAULT);
 
         displayActualWeatherLabel.setBackground(new Background(actualWeatherImage));
-        BackgroundImage actualBackgroundImage = new BackgroundImage(new Image("/org/example/images/sun.PNG",300,150,false,false), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        System.out.println(actualWeather.getWeatherItems().size());
+        //do wczytania jest wartosc z tabeli do funkcji ponizej
+        setNewBackgroundTheme("Thunderstorm",leftBackgroundPane);
+
+    }
+
+    private static void setNewBackgroundTheme(String description,AnchorPane backgroundForPane) {
+
+        String link ="";
+        switch(description) {
+            case "Thunderstorm":
+                link = "/org/example/images/Thunderstorm_day_theme.jpg";
+                break;
+            case "Drizzle":
+                link = "/org/example/images/Drizzle_day_theme.jpg";
+                break;
+            case "Rain":
+                link = "/org/example/images/Rainy_day_theme.jpg";
+                break;
+            case "Snow":
+                link = "/org/example/images/Snowy_day_theme.jpg";
+                break;
+            case "Mist":
+                link = "/org/example/images/Mist_day_theme.jpg";
+                break;
+            case "Clear":
+                link = "/org/example/images/Sunny_day_theme.jpg";
+                break;
+            case "Clouds":
+                link = "/org/example/images/Cloudy_day_theme.jpg";
+                break;
+            default:
+                break;
+        }
+        BackgroundImage actualBackgroundImage = new BackgroundImage(new Image(link,300,600,false,false), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-        leftBackgroundPane.setBackground(new Background(actualBackgroundImage));
+        backgroundForPane.setBackground(new Background(actualBackgroundImage));
 
     }
 
