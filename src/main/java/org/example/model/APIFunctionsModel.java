@@ -65,10 +65,13 @@ public class APIFunctionsModel {
         tempMinLabel1.setText(actualWeather.getActualTemperature().getTemp_min());
         tempMaxLabel1.setText(actualWeather.getActualTemperature().getTemp_max());
         image.setText(actualWeather.getActualWind().getSpeed());
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("/sun.PNG",80,80,false,false), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundImage actualWeatherImage = new BackgroundImage(new Image("/org/example/images/sun.PNG",80,80,false,false), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-        displayActualWeatherLabel.setBackground(new Background(backgroundImage));
-       // leftBackgroundPane.setBackground(new Background(backgroundImage));
+
+        displayActualWeatherLabel.setBackground(new Background(actualWeatherImage));
+        BackgroundImage actualBackgroundImage = new BackgroundImage(new Image("/org/example/images/sun.PNG",300,150,false,false), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        leftBackgroundPane.setBackground(new Background(actualBackgroundImage));
 
     }
 
