@@ -5,20 +5,32 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"  >
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <TextField fx:id="firstCityField" layoutX="74.0" layoutY="36.0" prefHeight="25.0" prefWidth="118.0" />
-            <Label layoutX="25.0" layoutY="40.0" text="City" />
-            <Button layoutX="211.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchFirstCityAction" text="Find" />
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <Label layoutX="14.0" layoutY="41.0" text="City" />
-            <Button layoutX="230.0" layoutY="37.0" mnemonicParsing="false" onAction="#searchSecondCityAction" text="Find" />
-            <TextField fx:id="secondCityField" layoutX="58.0" layoutY="37.0" />
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MainWindowController">
+   <children>
+      <Button layoutX="197.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchFirstCityAction" text="Button" />
+      <Button layoutX="511.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchSecondCityAction" text="Button" />
+      <Label layoutX="14.0" layoutY="54.0" text="Label" />
+      <Label layoutX="313.0" layoutY="54.0" text="Label" />
+      <TextField fx:id="firstCityField" layoutX="48.0" layoutY="50.0" />
+      <TextField fx:id="secondCityField" layoutX="353.0" layoutY="50.0" />
+      <Label fx:id="imageView1Label" layoutX="58.0" layoutY="175.0" text="winD" />
+      <Label fx:id="tempMinLabel1" layoutX="57.0" layoutY="148.0" text="minD" />
+      <Label fx:id="tempMaxLabel1" layoutX="56.0" layoutY="122.0" text="maxD" />
+      <Label fx:id="tempCurrentLabel1" layoutX="87.0" layoutY="90.0" text="actD" textFill="#160f90">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="122.0" text="Max" />
+      <Label layoutX="14.0" layoutY="148.0" text="Min" />
+      <Label layoutX="18.0" layoutY="175.0" text="Wind" />
+      <SplitPane disable="true" dividerPositions="0.5" focusTraversable="false" layoutX="4.0" layoutY="207.0" opacity="0.46" prefHeight="188.0" prefWidth="592.0">
+        <items>
+          <AnchorPane fx:id="leftBackgroundPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="177.0" prefWidth="293.0" />
+          <AnchorPane fx:id="rightBackgroundPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="234.0" prefWidth="289.0" />
+        </items>
+      </SplitPane>
+      <Label fx:id="displayActualWeatherLabel" layoutX="99.0" layoutY="120.0" prefHeight="73.0" prefWidth="105.0" text="Label" />
+   </children>
+</AnchorPane>
