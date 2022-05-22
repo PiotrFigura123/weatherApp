@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import org.example.Config;
 import org.example.model.APIFunctionsModel;
 import org.example.model.ActualWeather;
 
@@ -28,12 +29,15 @@ public class MainWindowController {
     private AnchorPane leftBackgroundPane;
     @FXML
     private Label displayActualWeatherLabel;
+    @FXML
+    private ImageView setMainActualWeather;
 
 
     @FXML
     void searchFirstCityAction() {
-
-        APIFunctionsModel.loadweatherForField(firstCityField, imageView1Label,tempCurrentLabel1,tempMaxLabel1,tempMinLabel1,leftBackgroundPane,displayActualWeatherLabel);
+        String key = new Config().getAPI_KEY();
+        APIFunctionsModel.loadweatherForField(firstCityField, imageView1Label,tempCurrentLabel1,tempMaxLabel1,tempMinLabel1,leftBackgroundPane,displayActualWeatherLabel,setMainActualWeather,key);
+        //APIFunctionsModel.loadFiveDaysWeather(firstCityField,key);
 
     }
 

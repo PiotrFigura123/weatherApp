@@ -4,9 +4,10 @@ import com.google.gson.Gson;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import org.example.Config;
 
+//import java.lang.runtime.SwitchBootstraps;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -17,8 +18,8 @@ import static java.lang.Integer.parseInt;
 public class APIFunctionsModel {
 
 
-    public static void loadweatherForField(TextField firstCityField, Label image, Label tempCurrentLabel1, Label tempMaxLabel1, Label tempMinLabel1, AnchorPane leftBackgroundPane,Label displayActualWeatherLabel) {
-        String key = new Config().getAPI_KEY();
+    public static void loadweatherForField(TextField firstCityField, Label image, Label tempCurrentLabel1, Label tempMaxLabel1, Label tempMinLabel1, AnchorPane leftBackgroundPane, Label displayActualWeatherLabel, ImageView setMainActualWeather,String key) {
+
 
         try{
             URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q="+firstCityField.getText()+"&appid="+key);
@@ -42,7 +43,8 @@ public class APIFunctionsModel {
                 Gson gson = new Gson();
                 ActualWeather actualWeather = new Gson().fromJson(actualWeatherString,ActualWeather.class);
 
-                displayWeatherForWindow1(actualWeather, image,tempCurrentLabel1,tempMaxLabel1, tempMinLabel1,leftBackgroundPane,displayActualWeatherLabel);
+
+                displayWeatherForWindow(actualWeather, image,tempCurrentLabel1,tempMaxLabel1, tempMinLabel1,leftBackgroundPane,setMainActualWeather);
 
             }
         }catch(Exception er){
@@ -52,19 +54,24 @@ public class APIFunctionsModel {
 
     }
 
-    private static void displayWeatherForWindow1(ActualWeather actualWeather, Label image, Label tempCurrentLabel1, Label tempMaxLabel1, Label tempMinLabel1,AnchorPane leftBackgroundPane,Label displayActualWeatherLabel) {
+    private static void displayWeatherForWindow(ActualWeather actualWeather, Label image, Label tempCurrentLabel1, Label tempMaxLabel1, Label tempMinLabel1,AnchorPane leftBackgroundPane,ImageView setMainActualWeather) {
 
         tempCurrentLabel1.setText(actualWeather.getActualTemperature().getFeels_like());
         tempMinLabel1.setText(actualWeather.getActualTemperature().getTemp_min());
         tempMaxLabel1.setText(actualWeather.getActualTemperature().getTemp_max());
         image.setText(actualWeather.getActualWind().getSpeed());
-        BackgroundImage actualWeatherImage = new BackgroundImage(new Image("/org/example/images/sun.PNG",80,80,false,false), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
 
-        displayActualWeatherLabel.setBackground(new Background(actualWeatherImage));
-        System.out.println(actualWeather.getWeatherItems().size());
-        //do wczytania jest wartosc z tabeli do funkcji ponizej
-        setNewBackgroundTheme("Thunderstorm",leftBackgroundPane);
+        setNewBackgroundTheme(actualWeather.weather.get(0).main,leftBackgroundPane);
+        setNewWeatherPicture(actualWeather.weather.get(0).icon, setMainActualWeather);
+
+    }
+
+    private static void setNewWeatherPicture(String icon, ImageView setMainActualWeather) {
+        String link ="/org/example/images/icons/"+icon+"@2x.png";
+
+        System.out.println(link);
+
+        setMainActualWeather.setImage(new Image("/org/example/images/Thunderstorm_day_theme.jpg"));
 
     }
 
@@ -102,4 +109,36 @@ public class APIFunctionsModel {
 
     }
 
-}
+    public static void loadFiveDaysWeather(TextField firstCityField, String key) {
+
+        try{
+
+            URL url = new URL("api.openweathermap.org/data/2.5/forecast?q="+firstCityField.getText()+"&appid="+key);
+            HttpURLConnection conn = (HttpURLConnection)  url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+            if(responseCode !=200 ){
+                throw new RuntimeException("HttpsResponce code " + responseCode);
+            }else{
+                StringBuilder actualWeatherJson = new StringBuilder();
+
+                Scanner scanner = new Scanner(url.openStream());
+                while  (scanner.hasNext()){
+                    actualWeatherJson.append(scanner.nextLine());
+                }
+                scanner.close();
+
+                //System.out.println(actualWeatherJson);
+
+                //displayWeatherForWindow1(actualWeather, image,tempCurrentLabel1,tempMaxLabel1, tempMinLabel1,leftBackgroundPane,displayActualWeatherLabel);
+
+            }
+        }catch(Exception er){
+            er.printStackTrace();
+            return;
+        }
+
+    }
+    }
+

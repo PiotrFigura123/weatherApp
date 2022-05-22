@@ -5,6 +5,7 @@ import java.util.List;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
+
 public class ActualWeather {
 
     public int visibility;
@@ -13,11 +14,15 @@ public class ActualWeather {
     ActualWind wind;
     ActualSys sys;
 
-
     public class WeatherItems{
-        private String main;
-        private String description;
-        private String icon;
+        public String id;
+        public String main;
+        public String description;
+        public String icon;
+
+        public String getId() {
+            return id;
+        }
 
         public String getMain() {
             return main;
@@ -31,11 +36,12 @@ public class ActualWeather {
             return icon;
         }
     }
-
     public List<WeatherItems> getWeatherItems(){
+
         return weather;
     }
     public ActualTemperature getActualTemperature(){
+
         return main;
     }
     public class ActualTemperature{
