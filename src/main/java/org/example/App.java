@@ -28,9 +28,6 @@ public class App extends Application {
         MainWindow mainWindow = new MainWindow();
         mainWindow.initializeStage();
 
-
-
-
     }
 
 
