@@ -1,18 +1,53 @@
 package org.example.model;
 
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import static java.lang.Float.parseFloat;
+import static java.lang.Float.valueOf;
 import static java.lang.Integer.parseInt;
 
 
 public class ActualWeather {
 
     public int visibility;
+
+    public long timezone;
+    public long dt;
+    public String dt_txt;
     List<WeatherItems> weather;
     ActualTemperature main;
     ActualWind wind;
     ActualSys sys;
+    CityInfo city;
+    CoordClass coord;
+    public class CoordClass{
+        private float lon;
+        private float lat;
+
+        public float getLon() {
+            return lon;
+        }
+
+        public float getLat() {
+            return lat;
+        }
+    }
+    public CoordClass getCoordClass(){return coord; }
+
+    public class CityInfo{
+        public long timezone;
+        String name;
+    }
+
+    public CityInfo getCity() {
+        return city;
+    }
 
     public class WeatherItems{
         public String id;
@@ -78,12 +113,10 @@ public class ActualWeather {
         }
 
         private String conversionFromKelvin(String temp) {
-            return String.valueOf((int)parseFloat(temp)-273);
 
+            return String.valueOf((int)parseFloat(temp)-273);
         }
     }
-
-
 
     public class ActualWind{
         private String speed;
@@ -100,9 +133,20 @@ public class ActualWeather {
     public ActualWind getActualWind(){
         return wind;
     }
+
     public class ActualSys{
-        String sunrire;
-        String suntet;
+        private long sunrise;
+        private long sunset;
+        public long getSunrise() {
+
+            return sunrise;
+        }
+
+        public long getSunset() {
+            return sunset;
+        }
     }
+    public ActualSys getActualSys(){ return sys;}
+
 }
 

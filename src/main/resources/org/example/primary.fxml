@@ -2,39 +2,68 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MainWindowController">
+<AnchorPane prefHeight="540.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MainWindowController">
    <children>
-      <Button layoutX="197.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchFirstCityAction" text="Button" />
-      <Button layoutX="511.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchSecondCityAction" text="Button" />
-      <Label layoutX="14.0" layoutY="54.0" text="Label" />
-      <Label layoutX="313.0" layoutY="54.0" text="Label" />
+      <Button layoutX="197.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchFirstCityAction" text="Display" />
+      <Button layoutX="511.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchSecondCityAction" text="Display" />
+      <Label layoutX="14.0" layoutY="54.0" text="City" />
+      <Label layoutX="313.0" layoutY="54.0" text="City" />
       <TextField fx:id="firstCityField" layoutX="48.0" layoutY="50.0" />
       <TextField fx:id="secondCityField" layoutX="353.0" layoutY="50.0" />
-      <Label fx:id="imageView1Label" layoutX="58.0" layoutY="175.0" text="winD" />
-      <Label fx:id="tempMinLabel1" layoutX="57.0" layoutY="148.0" text="minD" />
-      <Label fx:id="tempMaxLabel1" layoutX="56.0" layoutY="122.0" text="maxD" />
-      <Label fx:id="tempCurrentLabel1" layoutX="87.0" layoutY="90.0" text="actD" textFill="#160f90">
+      <Label fx:id="imageView1Label" layoutX="58.0" layoutY="175.0" />
+      <Label fx:id="tempMinLabel1" layoutX="57.0" layoutY="148.0" />
+      <Label fx:id="tempMaxLabel1" layoutX="56.0" layoutY="122.0" />
+      <Label fx:id="tempCurrentLabel1" layoutX="87.0" layoutY="90.0" textFill="#160f90">
          <font>
             <Font size="22.0" />
          </font></Label>
-      <Label layoutX="14.0" layoutY="122.0" text="Max" />
-      <Label layoutX="14.0" layoutY="148.0" text="Min" />
-      <Label layoutX="18.0" layoutY="175.0" text="Wind" />
-      <SplitPane disable="true" dividerPositions="0.5" focusTraversable="false" layoutX="-4.0" layoutY="2.0" opacity="0.46" prefHeight="393.0" prefWidth="600.0">
+      <Label layoutX="14.0" layoutY="122.0" text="Max" AnchorPane.leftAnchor="14.0" />
+      <Label layoutX="14.0" layoutY="148.0" text="Min" AnchorPane.leftAnchor="14.0" />
+      <Label layoutX="18.0" layoutY="175.0" text="Wind" AnchorPane.leftAnchor="14.0" />
+      <ImageView fx:id="setMainActualWeather" fitHeight="62.0" fitWidth="74.0" layoutX="116.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="sunriseWindow1Label" layoutX="75.0" layoutY="211.0" />
+      <Label fx:id="sunsetWindow1Label" layoutX="143.0" layoutY="211.0" />
+      <Label fx:id="day1Window1Min" layoutX="30.0" layoutY="499.0" />
+      <Label fx:id="day2Window1Min" layoutX="81.0" layoutY="499.0" />
+      <Label fx:id="day3Window1Min" layoutX="128.0" layoutY="499.0" />
+      <Label fx:id="day4Window1Min" layoutX="179.0" layoutY="499.0" />
+      <Label fx:id="day5Window1Min" layoutX="233.0" layoutY="499.0" />
+      <Label fx:id="day1Window1Max" layoutX="30.0" layoutY="424.0" />
+      <Label fx:id="day2Window1Max" layoutX="81.0" layoutY="424.0" />
+      <Label fx:id="day3Window1Max" layoutX="128.0" layoutY="424.0" />
+      <Label fx:id="day4Window1Max" layoutX="179.0" layoutY="424.0" />
+      <Label fx:id="day5Window1Max" layoutX="233.0" layoutY="424.0" />
+      <ImageView fx:id="day1Window1Pisture" fitHeight="47.0" fitWidth="52.0" layoutX="18.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="day2Window1Pisture" fitHeight="47.0" fitWidth="52.0" layoutX="69.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="day3Window1Pisture" fitHeight="47.0" fitWidth="52.0" layoutX="116.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="day4Window1Pisture" fitHeight="47.0" fitWidth="52.0" layoutX="167.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="day5Window1Pisture" fitHeight="47.0" fitWidth="52.0" layoutX="221.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="day1Window1Day" layoutX="30.0" layoutY="398.0" />
+      <Label fx:id="day2Window1Day" layoutX="81.0" layoutY="398.0" />
+      <Label fx:id="day3Window1Day" layoutX="128.0" layoutY="398.0" />
+      <Label fx:id="day4Window1Day" layoutX="179.0" layoutY="398.0" />
+      <Label fx:id="day5Window1Day" layoutX="233.0" layoutY="398.0" />
+      <SplitPane disable="true" dividerPositions="0.5" focusTraversable="false" layoutX="344.0" layoutY="116.0" opacity="0.2" prefHeight="424.0" prefWidth="306.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="116.0">
         <items>
-          <AnchorPane fx:id="leftBackgroundPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="177.0" prefWidth="293.0">
-               <children>
-                  <ImageView fx:id="setMainActualWeather" fitHeight="73.0" fitWidth="118.0" layoutX="89.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true" />
-               </children></AnchorPane>
-          <AnchorPane fx:id="rightBackgroundPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="234.0" prefWidth="289.0" />
+          <AnchorPane fx:id="leftBackgroundPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="0.0" visible="true" />
+          <AnchorPane fx:id="rightBackgroundPane" accessibleRole="IMAGE_VIEW" depthTest="DISABLE" disable="true" minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="446.0" prefWidth="335.0" />
         </items>
       </SplitPane>
-      <Label fx:id="displayActualWeatherLabel" layoutX="99.0" layoutY="120.0" prefHeight="73.0" prefWidth="105.0" text="Label" />
+      <Separator layoutX="1.0" layoutY="75.0" prefHeight="9.0" prefWidth="240.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="14.0" layoutY="227.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="79.0" layoutY="374.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <ScrollPane fx:id="anchorPaneInScrollPane" layoutX="-9.0" layoutY="228.0" prefHeight="100.0" prefWidth="325.0" AnchorPane.bottomAnchor="167.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="228.0">
+        <content>
+          <AnchorPane fx:id="scrollPane1" minHeight="0.0" minWidth="0.0" prefHeight="129.0" prefWidth="324.0" />
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

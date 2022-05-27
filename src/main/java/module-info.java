@@ -8,5 +8,6 @@ module org.example {
     opens org.example.controller to javafx.fxml;
     opens org.example.model;
     opens org.example.images;
+    opens org.example.images.icons;
 
 }
