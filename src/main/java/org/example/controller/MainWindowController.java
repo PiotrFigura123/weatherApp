@@ -74,12 +74,11 @@ public class MainWindowController {
     private Label day5Window1Min;
     @FXML
     private ImageView day5Window1Pisture;
-
-
     @FXML
     private ScrollPane anchorPaneInScrollPane;
     @FXML
     private AnchorPane scrollPane1;
+
 
     @FXML
     void searchFirstCityAction() {
