@@ -108,6 +108,119 @@ public class MainWindowController {
         displayHourlyWeather(hourlyWeather1, anchorPaneInScrollPane, scrollPane1);
 
     }
+
+
+    @FXML
+    private Label day1Window1Max2;
+
+    @FXML
+    private Label tempCurrentLabel2;
+    @FXML
+    private Label day1Window1Min2;
+
+    @FXML
+    private ImageView day1Window1Pisture2;
+
+    @FXML
+    private Label day2Window1Max2;
+
+    @FXML
+    private Label day2Window1Min2;
+
+    @FXML
+    private ImageView day2Window1Pisture2;
+
+    @FXML
+    private Label day3Window1Max2;
+
+    @FXML
+    private Label day3Window1Min2;
+
+    @FXML
+    private ImageView day3Window1Pisture2;
+
+    @FXML
+    private Label day4Window1Max2;
+
+    @FXML
+    private Label day4Window1Min2;
+    @FXML
+    private Label day1Window1Day2;
+    @FXML
+    private Label day2Window1Day2;
+    @FXML
+    private Label day3Window1Day2;
+    @FXML
+    private Label day4Window1Day2;
+    @FXML
+    private Label day5Window1Day2;
+
+    @FXML
+    private ImageView day4Window1Pisture2;
+
+    @FXML
+    private Label day5Window1Max2;
+
+    @FXML
+    private Label day5Window1Min2;
+
+    @FXML
+    private ImageView day5Window1Pisture2;
+
+    @FXML
+    private Label windSpeedLabel2;
+
+    @FXML
+    private AnchorPane rightBackgroundPane;
+
+    @FXML
+    private AnchorPane scrolePane2;
+
+    @FXML
+    private TextField secondCityField;
+
+    @FXML
+    private ImageView setMainActualWeather2;
+
+    @FXML
+    private Label tempMaxLabel2;
+
+    @FXML
+    private Label tempMinLabel2;
+
+    @FXML
+    private Label sunriseWindow2Label;
+    @FXML
+    private Label sunsetWindow2Label;
+    @FXML
+    private ScrollPane anchorPaneInScrollPane2;
+    @FXML
+    private AnchorPane scrollPane2;
+    @FXML
+    void searchSecondCityAction() {
+        ActualWeather actualWeather2;
+        FiveDaysWeather fiveDaysWeather2;
+        HourlyWeather hourlyWeather2;
+
+        actualWeather2 = APIFunctionsModel.loadweatherForField(secondCityField);
+        fiveDaysWeather2 = APIFunctionsModel.loadFiveDaysWeather(secondCityField);
+        hourlyWeather2 = APIFunctionsModel.loadHourlyWeather(actualWeather2);
+
+        displayWeatherForWindow(actualWeather2, setMainActualWeather2, tempCurrentLabel2, tempMaxLabel2, tempMinLabel2, rightBackgroundPane, sunriseWindow2Label, sunsetWindow2Label, windSpeedLabel2);
+        displayTempAt3(fiveDaysWeather2,  day1Window1Day2,  day2Window1Day2,  day3Window1Day2,  day4Window1Day2, day5Window1Day2,
+                day1Window1Max2,  day2Window1Max2,  day3Window1Max2,  day4Window1Max2,  day5Window1Max2,
+                day1Window1Min2,  day2Window1Min2,  day3Window1Min2,  day4Window1Min2,  day5Window1Min2,
+                day1Window1Pisture2,  day2Window1Pisture2,  day3Window1Pisture2,  day4Window1Pisture2,  day5Window1Pisture2);
+        displayHourlyWeather(hourlyWeather2, anchorPaneInScrollPane2, scrollPane2);
+
+
+       /* APIFunctionsModel.loadweatherForField(secondCityField, windSpeedLabel2,tempCurrentLabel2,
+                tempMaxLabel2,tempMinLabel2,rightBackgroundPane,setMainActualWeather2,sunriseWindow2Label,
+                sunsetWindow2Label,key);
+        APIFunctionsModel.loadHourlyWeather( anchorPaneInScrollPane2,scrollPane2,key);
+*/
+    }
+
     private void displayHourlyWeather(HourlyWeather hourlyWeather, ScrollPane anchorPaneInScrollPane, AnchorPane scrollPane1) {
         Font font = Font.font("Arial", FontWeight.LIGHT, 10);
         FlowPane flowPane = new FlowPane();
@@ -140,9 +253,9 @@ public class MainWindowController {
 
     }
     private  void displayTempAt3(FiveDaysWeather fiveDaysWeather1, Label day1Window1Day, Label day2Window1Day, Label day3Window1Day, Label day4Window1Day, Label day5Window1Day,
-                                       Label day1Window1Max, Label day2Window1Max, Label day3Window1Max, Label day4Window1Max, Label day5Window1Max,
-                                       Label day1Window1Min, Label day2Window1Min, Label day3Window1Min, Label day4Window1Min, Label day5Window1Min,
-                                       ImageView day1Window1Pisture, ImageView day2Window1Pisture, ImageView day3Window1Pisture, ImageView day4Window1Pisture, ImageView day5Window1Pisture) {
+                                 Label day1Window1Max, Label day2Window1Max, Label day3Window1Max, Label day4Window1Max, Label day5Window1Max,
+                                 Label day1Window1Min, Label day2Window1Min, Label day3Window1Min, Label day4Window1Min, Label day5Window1Min,
+                                 ImageView day1Window1Pisture, ImageView day2Window1Pisture, ImageView day3Window1Pisture, ImageView day4Window1Pisture, ImageView day5Window1Pisture) {
         String checkout1HighTime = "1:00,PM";
         String checkout2HighTime = "2:00,PM";
         String checkout3HighTime = "3:00,PM";
@@ -243,7 +356,7 @@ public class MainWindowController {
     }
 
     private void displayWeatherForWindow(ActualWeather actualWeather, ImageView setMainActualWeather, Label tempCurrentLabel, Label tempMaxLabel1, Label tempMinLabel1, AnchorPane leftBackgroundPane, Label sunriseWindow1Label, Label sunsetWindow1Label, Label windSpeedLabel1) {
-       tempCurrentLabel.setText(actualWeather.getActualTemperature().getFeels_like());
+        tempCurrentLabel.setText(actualWeather.getActualTemperature().getFeels_like());
         tempMinLabel1.setText(actualWeather.getActualTemperature().getTemp_min());
         tempMaxLabel1.setText(actualWeather.getActualTemperature().getTemp_max());
         windSpeedLabel1.setText(actualWeather.getActualWind().getSpeed());
@@ -282,91 +395,6 @@ public class MainWindowController {
         String icon = hourlyWeather.getHourly().get(i).getWeather().get(0).getIcon();
         String link = "/org/weatherApp/images/icons/" + icon + "@2x.png";
         return link;
-    }
-
-    @FXML
-    private Label day1Window1Max2;
-
-    @FXML
-    private Label tempCurrentLabel2;
-    @FXML
-    private Label day1Window1Min2;
-
-    @FXML
-    private ImageView day1Window1Pisture2;
-
-    @FXML
-    private Label day2Window1Max2;
-
-    @FXML
-    private Label day2Window1Min2;
-
-    @FXML
-    private ImageView day2Window1Pisture2;
-
-    @FXML
-    private Label day3Window1Max2;
-
-    @FXML
-    private Label day3Window1Min2;
-
-    @FXML
-    private ImageView day3Window1Pisture2;
-
-    @FXML
-    private Label day4Window1Max2;
-
-    @FXML
-    private Label day4Window1Min2;
-
-    @FXML
-    private ImageView day4Window1Pisture2;
-
-    @FXML
-    private Label day5Window1Max2;
-
-    @FXML
-    private Label day5Window1Min2;
-
-    @FXML
-    private ImageView day5Window1Pisture2;
-
-    @FXML
-    private Label windSpeedLabel2;
-
-    @FXML
-    private AnchorPane rightBackgroundPane;
-
-    @FXML
-    private AnchorPane scrolePane2;
-
-    @FXML
-    private TextField secondCityField;
-
-    @FXML
-    private ImageView setMainActualWeather2;
-
-    @FXML
-    private Label tempMaxLabel2;
-
-    @FXML
-    private Label tempMinLabel2;
-
-    @FXML
-    private Label sunriseWindow2Label;
-    @FXML
-    private Label sunsetWindow2Label;
-    @FXML
-    private ScrollPane anchorPaneInScrollPane2;
-    @FXML
-    private AnchorPane scrollPane2;
-    @FXML
-    void searchSecondCityAction() {
-       /* APIFunctionsModel.loadweatherForField(secondCityField, windSpeedLabel2,tempCurrentLabel2,
-                tempMaxLabel2,tempMinLabel2,rightBackgroundPane,setMainActualWeather2,sunriseWindow2Label,
-                sunsetWindow2Label,key);
-        APIFunctionsModel.loadHourlyWeather( anchorPaneInScrollPane2,scrollPane2,key);
-*/
     }
 }
 

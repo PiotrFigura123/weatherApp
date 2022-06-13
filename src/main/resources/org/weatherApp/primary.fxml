@@ -31,11 +31,11 @@
       <ImageView fx:id="setMainActualWeather1" fitHeight="62.0" fitWidth="74.0" layoutX="116.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="sunriseWindow1Label" layoutX="75.0" layoutY="211.0" />
       <Label fx:id="sunsetWindow1Label" layoutX="143.0" layoutY="211.0" />
-      <Label fx:id="day1Window1Min" layoutX="30.0" layoutY="499.0" />
-      <Label fx:id="day2Window1Min" layoutX="81.0" layoutY="499.0" />
-      <Label fx:id="day3Window1Min" layoutX="128.0" layoutY="499.0" />
-      <Label fx:id="day4Window1Min" layoutX="179.0" layoutY="499.0" />
-      <Label fx:id="day5Window1Min" layoutX="233.0" layoutY="499.0" />
+      <Label fx:id="day1Window1Min" layoutX="30.0" layoutY="500" />
+      <Label fx:id="day2Window1Min" layoutX="81.0" layoutY="500" />
+      <Label fx:id="day3Window1Min" layoutX="128.0" layoutY="500" />
+      <Label fx:id="day4Window1Min" layoutX="179.0" layoutY="500" />
+      <Label fx:id="day5Window1Min" layoutX="233.0" layoutY="500" />
       <Label fx:id="day1Window1Max" layoutX="30.0" layoutY="424.0" />
       <Label fx:id="day2Window1Max" layoutX="81.0" layoutY="424.0" />
       <Label fx:id="day3Window1Max" layoutX="128.0" layoutY="424.0" />
@@ -77,16 +77,21 @@
           <AnchorPane fx:id="scrollPane1" minHeight="0.0" minWidth="0.0" prefHeight="129.0" prefWidth="324.0" />
         </content>
       </ScrollPane>
-      <Label fx:id="day1Window1Min2" layoutX="351.0" layoutY="481.0" />
-      <Label fx:id="day2Window1Min2" layoutX="402.0" layoutY="481.0" />
-      <Label fx:id="day3Window1Min2" layoutX="449.0" layoutY="481.0" />
-      <Label fx:id="day4Window1Min2" layoutX="500.0" layoutY="481.0" />
-      <Label fx:id="day5Window1Min2" layoutX="554.0" layoutY="481.0" />
-      <Label fx:id="day1Window1Max2" layoutX="351.0" layoutY="406.0" />
-      <Label fx:id="day2Window1Max2" layoutX="402.0" layoutY="406.0" />
-      <Label fx:id="day3Window1Max2" layoutX="449.0" layoutY="406.0" />
-      <Label fx:id="day4Window1Max2" layoutX="500.0" layoutY="406.0" />
-      <Label fx:id="day5Window1Max2" layoutX="554.0" layoutY="406.0" />
+      <Label fx:id="day1Window1Day2" layoutX="351.0" layoutY="398.0" />
+      <Label fx:id="day2Window1Day2" layoutX="402.0" layoutY="398.0" />
+      <Label fx:id="day3Window1Day2" layoutX="449.0" layoutY="398.0" />
+      <Label fx:id="day4Window1Day2" layoutX="500.0" layoutY="398.0" />
+      <Label fx:id="day5Window1Day2" layoutX="554.0" layoutY="398.0" />
+      <Label fx:id="day1Window1Min2" layoutX="351.0" layoutY="500" />
+      <Label fx:id="day2Window1Min2" layoutX="402.0" layoutY="500" />
+      <Label fx:id="day3Window1Min2" layoutX="449.0" layoutY="500" />
+      <Label fx:id="day4Window1Min2" layoutX="500.0" layoutY="500" />
+      <Label fx:id="day5Window1Min2" layoutX="554.0" layoutY="500" />
+      <Label fx:id="day1Window1Max2" layoutX="351.0" layoutY="424.0" />
+      <Label fx:id="day2Window1Max2" layoutX="402.0" layoutY="424.0" />
+      <Label fx:id="day3Window1Max2" layoutX="449.0" layoutY="424.0" />
+      <Label fx:id="day4Window1Max2" layoutX="500.0" layoutY="424.0" />
+      <Label fx:id="day5Window1Max2" layoutX="554.0" layoutY="424.0" />
       <ImageView fx:id="day1Window1Pisture2" fitHeight="47.0" fitWidth="52.0" layoutX="339.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="day2Window1Pisture2" fitHeight="47.0" fitWidth="52.0" layoutX="390.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="day3Window1Pisture2" fitHeight="47.0" fitWidth="52.0" layoutX="437.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true" />
