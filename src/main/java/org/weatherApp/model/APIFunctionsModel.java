@@ -64,6 +64,40 @@ public class APIFunctionsModel {
         return null;
     }
 
+    public static FiveDaysWeather loadFiveDaysWeather(TextField firstCityField) {
+
+        try {
+            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + firstCityField.getText() + "&appid=" + key);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+            if (responseCode != 200) {
+                throw new RuntimeException("HttpsResponce code " + responseCode);
+            } else {
+                StringBuilder fiveDaysWeatherJson = new StringBuilder();
+
+                Scanner scanner = new Scanner(url.openStream());
+                while (scanner.hasNext()) {
+                    fiveDaysWeatherJson.append(scanner.nextLine());
+                }
+                scanner.close();
+
+                System.out.println("fiveDaysWeatherJson " + fiveDaysWeatherJson);
+                String fiveDaysWeatherString = fiveDaysWeatherJson.toString();
+
+                Gson gson = new Gson();
+                FiveDaysWeather fiveDaysWeather1 = new Gson().fromJson(fiveDaysWeatherString, FiveDaysWeather.class);
+                return fiveDaysWeather1;
+            }
+        } catch (Exception er) {
+            er.printStackTrace();
+            System.out.println("errr messafe");
+        }
+        System.out.println("wywlilo mnie z systemu");
+        return null;
+
+    }
 /**
     public static void loadFiveDaysWeather(TextField firstCityField, Label day1Window1Day, Label day2Window1Day, Label day3Window1Day, Label day4Window1Day, Label day5Window1Day,
                                            Label day1Window1Max, Label day2Window1Max, Label day3Window1Max, Label day4Window1Max, Label day5Window1Max,
@@ -181,37 +215,12 @@ public class APIFunctionsModel {
         }
     }
 
-    private static void setDayOfWeek(FiveDaysWeather fiveDaysWeather1, Label day1Window1Day, int i) {
-        String weekDay = getDay(fiveDaysWeather1.getCity().timezone, fiveDaysWeather1.getFiveDaysWeatherList().get(i).dt);
-        day1Window1Day.setText(weekDay);
-    }
-
-    private static void setIconDay(FiveDaysWeather fiveDaysWeather1, ImageView imagePicture, int i) {
-        String icon = fiveDaysWeather1.getFiveDaysWeatherList().get(i).getWeatherItems().get(0).getIcon();
-        String link = "/org/weatherApp/images/icons/" + icon + "@2x.png";
-        Image image = new Image(link);
-        imagePicture.setImage(image);
-    }
 
 
-    private static String checkTimeInTable(long timezone, long dt) {
-        //long milis = dt*1000;
-        long milis = (dt + timezone) * 1000;
-        Date date = new Date(milis);
-        SimpleDateFormat sdf = new SimpleDateFormat("h:mm,a", Locale.ENGLISH);
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String formattedTime = sdf.format(date);
-        return formattedTime;
-    }
 
-    private static String getDay(long timezone, long dt) {
-        long milis = (dt + timezone) * 1000;
-        Date date = new Date(milis);
-        SimpleDateFormat sdf = new SimpleDateFormat("E", Locale.ENGLISH);
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String formattedTime = sdf.format(date);
-        return formattedTime;
-    }
+
+
+
 
     public static void loadHourlyWeather(ScrollPane anchorPaneInScrollPane, AnchorPane scrollPane1, String key) {
 
