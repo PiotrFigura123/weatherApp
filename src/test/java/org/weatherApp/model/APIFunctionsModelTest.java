@@ -1,4 +1,4 @@
-package org.example.model;
+package org.weatherApp.model;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

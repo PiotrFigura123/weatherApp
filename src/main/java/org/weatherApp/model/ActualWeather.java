@@ -1,12 +1,6 @@
-package org.example.model;
+package org.weatherApp.model;
 
-import java.security.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import static java.lang.Float.parseFloat;
 import static java.lang.Float.valueOf;

@@ -1,10 +1,9 @@
-package org.example.view;
+package org.weatherApp.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.model.ActualWeather;
 
 import java.io.IOException;
 
@@ -12,7 +11,7 @@ import java.io.IOException;
 public class MainWindow {
 
     public void initializeStage() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/primary.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/weatherApp/primary.fxml"));
         Parent parent;
         try {
             parent = fxmlLoader.load();

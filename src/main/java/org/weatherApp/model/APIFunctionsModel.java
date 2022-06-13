@@ -1,4 +1,4 @@
-package org.example.model;
+package org.weatherApp.model;
 
 import com.google.gson.Gson;
 import javafx.geometry.Insets;
@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -91,7 +90,7 @@ public class APIFunctionsModel {
     }
 
     private static void setNewWeatherPicture(String icon, ImageView setMainActualWeather) {
-        String link ="/org/example/images/icons/"+icon+"@2x.png";
+        String link = "/org/weatherApp/images/icons/" +icon+"@2x.png";
         Image image = new Image(link);
 
         setMainActualWeather.setImage(image);
@@ -101,7 +100,7 @@ public class APIFunctionsModel {
 
     private static void setNewBackgroundTheme(String description,AnchorPane backgroundForPane) {
 
-        String link ="/org/example/images/"+description+"_day_theme.jpg";
+        String link = "/org/weatherApp/images/" +description+"_day_theme.jpg";
         BackgroundImage actualBackgroundImage = new BackgroundImage(new Image(link,300,600,false,false), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         backgroundForPane.setBackground(new Background(actualBackgroundImage));
@@ -231,7 +230,7 @@ public class APIFunctionsModel {
 
     private static void setIconDay(FiveDaysWeather fiveDaysWeather1, ImageView imagePicture,int i) {
         String icon = fiveDaysWeather1.getFiveDaysWeatherList().get(i).getWeatherItems().get(0).getIcon();
-        String link ="/org/example/images/icons/"+icon+"@2x.png";
+        String link = "/org/weatherApp/images/icons/" +icon+"@2x.png";
         Image image = new Image(link);
         imagePicture.setImage(image);
     }
@@ -324,7 +323,7 @@ public class APIFunctionsModel {
 
     private static String getPathToPicture(HourlyWeather hourlyWeather, int i) {
         String icon = hourlyWeather.getHourly().get(i).getWeather().get(0).getIcon();
-        String link ="/org/example/images/icons/"+icon+"@2x.png";
+        String link = "/org/weatherApp/images/icons/" +icon+"@2x.png";
         return link;
     }
 

@@ -1,4 +1,4 @@
-package org.example;
+package org.weatherApp;
 
 public class Config {
     private final String API_KEY = "448b701c42f8e23b59da9f63b5194666";

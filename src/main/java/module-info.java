@@ -2,12 +2,12 @@ module org.example {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
-    opens org.example to javafx.fxml;
-    exports org.example;
-    exports org.example.controller;
-    opens org.example.controller to javafx.fxml;
-    opens org.example.model;
-    opens org.example.images;
-    opens org.example.images.icons;
+    opens org.weatherApp to javafx.fxml;
+    exports org.weatherApp;
+    exports org.weatherApp.controller;
+    opens org.weatherApp.controller to javafx.fxml;
+    opens org.weatherApp.model;
+    opens org.weatherApp.images;
+    opens org.weatherApp.images.icons;
 
 }
