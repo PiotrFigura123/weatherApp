@@ -8,7 +8,7 @@ public class HourlyWeather {
     private long timezone_offset;
     List<HourlyList> hourly;
 
-    public class HourlyList{
+    public class HourlyList {
         private long dt;
         private String temp;
 
@@ -17,21 +17,26 @@ public class HourlyWeather {
         public long getDt() {
             return dt;
         }
+
         public String getTemp() {
             return conversionFromKelvin(temp);
         }
-        public class WeatherElements{
+
+        public class WeatherElements {
             private String icon;
+
             public String getIcon() {
                 return icon;
             }
         }
+
         public List<WeatherElements> getWeather() {
             return weather;
         }
+
         private String conversionFromKelvin(String temp) {
 
-            return String.valueOf((int)parseFloat(temp)-273);
+            return String.valueOf((int) parseFloat(temp) - 273);
         }
     }
 
