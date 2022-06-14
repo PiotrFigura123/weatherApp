@@ -1,34 +1,23 @@
 package org.weatherApp.model;
 
 import com.google.gson.Gson;
-
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-
 import org.weatherApp.Config;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Scanner;
-import java.util.TimeZone;
-
-import static java.lang.Integer.parseInt;
 
 
 public class APIFunctionsModel {
 
     private static String key = new Config().getAPI_KEY();
 
+    //wydzielic wspolny kod dla metod
     public static ActualWeather loadweatherForField(TextField firstCityField) {
 
-        String actualWeatherString="";
+
+        String actualWeatherString = "";
         ActualWeather actualWeather;
         try {
             URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + firstCityField.getText() + "&appid=" + key);
@@ -57,6 +46,8 @@ public class APIFunctionsModel {
         } catch (Exception er) {
             er.printStackTrace();
             System.out.println("errr messafe");
+            //w tym  momentcie powinna byc wygenerowana odpowiedz do kontrolera
+            //tak zeby uzytkownik wiedzial gdzie jest blad.
         }
         System.out.println("wywlilo mnie z systemu");
         return null;
@@ -85,8 +76,8 @@ public class APIFunctionsModel {
                 String fiveDaysWeatherString = fiveDaysWeatherJson.toString();
 
                 Gson gson = new Gson();
-                FiveDaysWeather fiveDaysWeather1 = new Gson().fromJson(fiveDaysWeatherString, FiveDaysWeather.class);
-                return fiveDaysWeather1;
+                FiveDaysWeather fiveDaysWeather = new Gson().fromJson(fiveDaysWeatherString, FiveDaysWeather.class);
+                return fiveDaysWeather;
             }
         } catch (Exception er) {
             er.printStackTrace();

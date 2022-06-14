@@ -9,6 +9,4 @@ public class FiveDaysWeather extends ActualWeather {
     public List<ActualWeather> getFiveDaysWeatherList() {
         return list;
     }
-
-
 }

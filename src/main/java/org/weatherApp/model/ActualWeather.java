@@ -10,7 +10,6 @@ import static java.lang.Integer.parseInt;
 public class ActualWeather {
 
     public int visibility;
-
     public long timezone;
     public long dt;
     public String dt_txt;
