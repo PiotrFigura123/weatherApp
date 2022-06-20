@@ -1,3 +1,4 @@
-target/
-.idea/
-/src/main/resources/*.txt
+src/main/resources/*.txt
+src/main/java/org/weatherApp/Config.java
+target/*
+.idea/*
