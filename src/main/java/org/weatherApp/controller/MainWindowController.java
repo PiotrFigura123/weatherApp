@@ -9,28 +9,34 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import org.weatherApp.model.APIFunctionsModel;
 import org.weatherApp.model.ActualWeather;
 import org.weatherApp.model.FiveDaysWeather;
 import org.weatherApp.model.HourlyWeather;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class MainWindowController {
 
-    private static final String checkout1HighTime = "1:00,PM";
-    private static final String checkout2HighTime = "2:00,PM";
-    private static final String checkout3HighTime = "3:00,PM";
-    private static final String checkout1LowTime = "1:00,AM";
-    private static final String checkout2LowTime = "2:00,AM";
-    private static final String checkout3LowTime = "3:00,AM";
-    private static final int numberOfHourToDisplay=9;
-    private static final int numberOfThreeHourPeriodToDisplayInDailyWeather= 40;
+    private static final String checkout1HighTime = "13:00";
+    private static final String checkout2HighTime = "14:00";
+    private static final String checkout3HighTime = "15:00";
+    private static final String checkout1LowTime = "1:00";
+    private static final String checkout2LowTime = "2:00";
+    private static final String checkout3LowTime = "3:00";
+    private static final int numberOfHourToDisplay = 12;
+    private static final int numberOfThreeHourPeriodToDisplayInDailyWeather = 40;
     @FXML
     private TextField firstCityField;
     @FXML
@@ -101,7 +107,7 @@ public class MainWindowController {
         FiveDaysWeather fiveDaysWeather1 = APIFunctionsModel.loadFiveDaysWeather(firstCityField);
         HourlyWeather hourlyWeather1 = APIFunctionsModel.loadHourlyWeather(actualWeather1);
         displayWeatherForWindow(actualWeather1, setMainActualWeather1, tempCurrentLabel1, tempMaxLabel1, tempMinLabel1, leftBackgroundPane, sunriseWindow1Label, sunsetWindow1Label, windSpeedLabel1);
-        displayTempAt3(fiveDaysWeather1, day1Window1Day, day2Window1Day, day3Window1Day, day4Window1Day, day5Window1Day,
+        displayTempAtAfterNoon(fiveDaysWeather1, day1Window1Day, day2Window1Day, day3Window1Day, day4Window1Day, day5Window1Day,
                 day1Window1Max, day2Window1Max, day3Window1Max, day4Window1Max, day5Window1Max,
                 day1Window1Min, day2Window1Min, day3Window1Min, day4Window1Min, day5Window1Min,
                 day1Window1Pisture, day2Window1Pisture, day3Window1Pisture, day4Window1Pisture, day5Window1Pisture);
@@ -207,7 +213,7 @@ public class MainWindowController {
         hourlyWeather2 = APIFunctionsModel.loadHourlyWeather(actualWeather2);
 
         displayWeatherForWindow(actualWeather2, setMainActualWeather2, tempCurrentLabel2, tempMaxLabel2, tempMinLabel2, rightBackgroundPane, sunriseWindow2Label, sunsetWindow2Label, windSpeedLabel2);
-        displayTempAt3(fiveDaysWeather2, day1Window1Day2, day2Window1Day2, day3Window1Day2, day4Window1Day2, day5Window1Day2,
+        displayTempAtAfterNoon(fiveDaysWeather2, day1Window1Day2, day2Window1Day2, day3Window1Day2, day4Window1Day2, day5Window1Day2,
                 day1Window1Max2, day2Window1Max2, day3Window1Max2, day4Window1Max2, day5Window1Max2,
                 day1Window1Min2, day2Window1Min2, day3Window1Min2, day4Window1Min2, day5Window1Min2,
                 day1Window1Pisture2, day2Window1Pisture2, day3Window1Pisture2, day4Window1Pisture2, day5Window1Pisture2);
@@ -215,35 +221,53 @@ public class MainWindowController {
 
     }
 
-    private void displayHourlyWeather(HourlyWeather hourlyWeather, ScrollPane anchorPaneInScrollPane, AnchorPane scrollPane1) {
-        Font font = Font.font("Arial", FontWeight.LIGHT, 10);
+    private FlowPane setHourlyWeatherPictures(HourlyWeather hourlyWeather, ScrollPane anchorPaneInScrollPane, AnchorPane scrollPane1){
+        Font fontHour = Font.font("Arial", FontWeight.LIGHT, 13);
+        Font fontTemperature = Font.font("Arial", FontWeight.BOLD, 15);
         FlowPane flowPane = new FlowPane();
-
-        for (int i = 1; i <=numberOfHourToDisplay; i++) {
+        for (int i = 1; i <= numberOfHourToDisplay; i++) {
             VBox vbox = new VBox();
             long hourInt = hourlyWeather.getHourly().get(i).getDt();
             long timeZone = hourlyWeather.getTimezone_offset();
             Label hourLabel = new Label(checkTimeInTable(timeZone, hourInt));
-            hourLabel.setFont(font);
             Label tempActual = new Label(hourlyWeather.getHourly().get(i).getTemp());
-            tempActual.setLayoutX(10);
+
             String link = getPathToPicture(hourlyWeather, i);
             ImageView label1Wiew = new ImageView(new Image(link));
+
+            hourLabel.setFont(fontHour);
+            hourLabel.setTextFill(Color.BLACK);
+            hourLabel.setTextAlignment(TextAlignment.CENTER);
+
+            tempActual.setLayoutX(10);
+            tempActual.setFont(fontTemperature);
+            tempActual.setTextFill(Color.DARKBLUE);
+
             label1Wiew.setFitWidth(50);
             label1Wiew.setPreserveRatio(true);
             vbox.getChildren().addAll(hourLabel, tempActual, label1Wiew);
             vbox.setPadding(new Insets(10));
+
             flowPane.getChildren().add(vbox);
         }
         flowPane.setOrientation(Orientation.HORIZONTAL);
+        flowPane.setMaxWidth(315);
+        flowPane.setHgap(2);
+        flowPane.setVgap(2);
+
+        return flowPane;
+    }
+    private void displayHourlyWeather(HourlyWeather hourlyWeather, ScrollPane anchorPaneInScrollPane, AnchorPane scrollPane1) {
+        FlowPane flowPane = new FlowPane();
+        flowPane = setHourlyWeatherPictures(hourlyWeather, anchorPaneInScrollPane, scrollPane1);
         anchorPaneInScrollPane.setContent(flowPane);
-        anchorPaneInScrollPane.setMaxHeight(50);
+
     }
 
-    private void displayTempAt3(FiveDaysWeather fiveDaysWeather1, Label day1Window1Day, Label day2Window1Day, Label day3Window1Day, Label day4Window1Day, Label day5Window1Day,
-                                Label day1Window1Max, Label day2Window1Max, Label day3Window1Max, Label day4Window1Max, Label day5Window1Max,
-                                Label day1Window1Min, Label day2Window1Min, Label day3Window1Min, Label day4Window1Min, Label day5Window1Min,
-                                ImageView day1Window1Pisture, ImageView day2Window1Pisture, ImageView day3Window1Pisture, ImageView day4Window1Pisture, ImageView day5Window1Pisture) {
+    private void displayTempAtAfterNoon(FiveDaysWeather fiveDaysWeather1, Label day1Window1Day, Label day2Window1Day, Label day3Window1Day, Label day4Window1Day, Label day5Window1Day,
+                                        Label day1Window1Max, Label day2Window1Max, Label day3Window1Max, Label day4Window1Max, Label day5Window1Max,
+                                        Label day1Window1Min, Label day2Window1Min, Label day3Window1Min, Label day4Window1Min, Label day5Window1Min,
+                                        ImageView day1Window1Pisture, ImageView day2Window1Pisture, ImageView day3Window1Pisture, ImageView day4Window1Pisture, ImageView day5Window1Pisture) {
 
 
 
@@ -317,13 +341,14 @@ public class MainWindowController {
     }
 
     private String checkTimeInTable(long timezone, long dt) {
-
-        //zapoznac sie z java.time
         long milis = (dt + timezone) * 1000;
-        Date date = new Date(milis);
-        SimpleDateFormat sdf = new SimpleDateFormat("h:mm,a", Locale.ENGLISH);
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return sdf.format(date);
+        Instant instant = Instant.ofEpochMilli(milis);
+        String minutes = String.valueOf(instant.atZone(ZoneOffset.UTC).getMinute());
+        String hour = String.valueOf(instant.atZone(ZoneOffset.UTC).getHour());
+        if(minutes.length()==1)
+            minutes=minutes+"0";
+        return hour+":"+minutes;
+
     }
 
     private void setDayOfWeek(FiveDaysWeather fiveDaysWeather1, Label day1Window1Day, int i) {
@@ -333,38 +358,32 @@ public class MainWindowController {
 
     private String getDay(long timezone, long dt) {
         long milis = (dt + timezone) * 1000;
-        Date date = new Date(milis);
-        SimpleDateFormat sdf = new SimpleDateFormat("E", Locale.ENGLISH);
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return sdf.format(date);
+        Instant instant = Instant.ofEpochMilli(milis);
+        LocalDateTime ldt = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        String dayName = String.valueOf(ldt.getDayOfWeek());
+        return dayName.substring(0,3);
     }
 
     private void displayWeatherForWindow(ActualWeather actualWeather, ImageView setMainActualWeather, Label tempCurrentLabel, Label tempMaxLabel1, Label tempMinLabel1, AnchorPane leftBackgroundPane, Label sunriseWindow1Label, Label sunsetWindow1Label, Label windSpeedLabel1) {
+        Font font = Font.font("Arial", FontWeight.EXTRA_BOLD, 22);
+
         tempCurrentLabel.setText(actualWeather.getActualTemperature().getFeels_like());
+        tempCurrentLabel.setFont(font);
+        tempCurrentLabel.setTextFill(Color.DARKBLUE);
         tempMinLabel1.setText(actualWeather.getActualTemperature().getTemp_min());
         tempMaxLabel1.setText(actualWeather.getActualTemperature().getTemp_max());
         windSpeedLabel1.setText(actualWeather.getActualWind().getSpeed());
 
         setNewBackgroundTheme(actualWeather.weather.get(0).main, leftBackgroundPane);
         setNewWeatherPicture(actualWeather.weather.get(0).icon, setMainActualWeather);
-        displaySunriseSunset(actualWeather.getActualSys().getSunrise(), actualWeather.timezone, sunriseWindow1Label);
-        displaySunriseSunset(actualWeather.getActualSys().getSunset(), actualWeather.timezone, sunsetWindow1Label);
-
-    }
-
-    private void displaySunriseSunset(long eventTime, long timezone, Label label1ToDisplay) {
-        long milis = (eventTime + timezone) * 1000;
-        Date date = new Date(milis);
-        SimpleDateFormat sdf = new SimpleDateFormat("h:mm,a", Locale.ENGLISH);
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String formattedTime = sdf.format(date);
-        label1ToDisplay.setText(formattedTime);
+        sunriseWindow1Label.setText(checkTimeInTable(actualWeather.getActualSys().getSunrise(), actualWeather.timezone));
+        sunsetWindow1Label.setText(checkTimeInTable(actualWeather.getActualSys().getSunset(), actualWeather.timezone));
     }
 
     private void setNewBackgroundTheme(String description, AnchorPane backgroundForPane) {
 
         String link = "/org/weatherApp/images/" + description + "_day_theme.jpg";
-        BackgroundImage actualBackgroundImage = new BackgroundImage(new Image(link, 300, 600, false, false), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundImage actualBackgroundImage = new BackgroundImage(new Image(link, 325, 600, false, false), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         backgroundForPane.setBackground(new Background(actualBackgroundImage));
 
@@ -381,9 +400,6 @@ public class MainWindowController {
 
     private static String getPathToPicture(HourlyWeather hourlyWeather, int i) {
         String icon = hourlyWeather.getHourly().get(i).getWeather().get(0).getIcon();
-        return  "/org/weatherApp/images/icons/" + icon + "@2x.png";
+        return "/org/weatherApp/images/icons/" + icon + "@2x.png";
     }
 }
-
-
-
