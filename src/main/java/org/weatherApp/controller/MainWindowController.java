@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -58,6 +59,10 @@ public class MainWindowController {
     @FXML
     private ImageView day1Window1Pisture;
     @FXML
+    private Label errorLabel1;
+    @FXML
+    private Label errorLabel2;
+    @FXML
     private Label day2Window1Day;
     @FXML
     private Label day2Window1Max;
@@ -99,15 +104,29 @@ public class MainWindowController {
     @FXML
     void searchFirstCityAction() {
 
-        ActualWeather actualWeather1 = APIFunctionsModel.loadweatherForField(firstCityField);
-        FiveDaysWeather fiveDaysWeather1 = APIFunctionsModel.loadFiveDaysWeather(firstCityField);
-        HourlyWeather hourlyWeather1 = APIFunctionsModel.loadHourlyWeather(actualWeather1);
-        displayWeatherForWindow(actualWeather1, setMainActualWeather1, tempCurrentLabel1, tempMaxLabel1, tempMinLabel1, leftBackgroundPane, sunriseWindow1Label, sunsetWindow1Label, windSpeedLabel1);
-        displayTempAtAfterNoon(fiveDaysWeather1, day1Window1Day, day2Window1Day, day3Window1Day, day4Window1Day, day5Window1Day,
+        clearAlldata(setMainActualWeather1, tempCurrentLabel1, tempMaxLabel1, tempMinLabel1,
+                rightBackgroundPane, sunriseWindow1Label, sunsetWindow1Label, windSpeedLabel1,
+                day1Window1Day, day2Window1Day, day3Window1Day, day4Window1Day, day5Window1Day,
                 day1Window1Max, day2Window1Max, day3Window1Max, day4Window1Max, day5Window1Max,
                 day1Window1Min, day2Window1Min, day3Window1Min, day4Window1Min, day5Window1Min,
-                day1Window1Pisture, day2Window1Pisture, day3Window1Pisture, day4Window1Pisture, day5Window1Pisture);
-        displayHourlyWeather(hourlyWeather1, anchorPaneInScrollPane, scrollPane1);
+                day1Window1Pisture, day2Window1Pisture, day3Window1Pisture, day4Window1Pisture, day5Window1Pisture,
+                anchorPaneInScrollPane, scrollPane1);
+        ActualWeather actualWeather1 = APIFunctionsModel.loadweatherForField(firstCityField);
+        if(actualWeather1==null)
+        {
+            errorLabel1.setText("zle miasto");
+        }else{
+            errorLabel1.setText("");
+            FiveDaysWeather fiveDaysWeather1 = APIFunctionsModel.loadFiveDaysWeather(firstCityField);
+            HourlyWeather hourlyWeather1 = APIFunctionsModel.loadHourlyWeather(actualWeather1);
+            displayWeatherForWindow(actualWeather1, setMainActualWeather1, tempCurrentLabel1, tempMaxLabel1, tempMinLabel1, leftBackgroundPane, sunriseWindow1Label, sunsetWindow1Label, windSpeedLabel1);
+            displayTempAtAfterNoon(fiveDaysWeather1, day1Window1Day, day2Window1Day, day3Window1Day, day4Window1Day, day5Window1Day,
+                    day1Window1Max, day2Window1Max, day3Window1Max, day4Window1Max, day5Window1Max,
+                    day1Window1Min, day2Window1Min, day3Window1Min, day4Window1Min, day5Window1Min,
+                    day1Window1Pisture, day2Window1Pisture, day3Window1Pisture, day4Window1Pisture, day5Window1Pisture);
+            displayHourlyWeather(hourlyWeather1, anchorPaneInScrollPane, scrollPane1);
+        }
+
 
     }
 
@@ -200,20 +219,56 @@ public class MainWindowController {
 
     @FXML
     void searchSecondCityAction() {
+        clearAlldata(setMainActualWeather2, tempCurrentLabel2, tempMaxLabel2, tempMinLabel2, rightBackgroundPane, sunriseWindow2Label, sunsetWindow2Label, windSpeedLabel2,
+                day1Window1Day2, day2Window1Day2, day3Window1Day2, day4Window1Day2, day5Window1Day2,
+                day1Window1Max2, day2Window1Max2, day3Window1Max2, day4Window1Max2, day5Window1Max2,
+                day1Window1Min2, day2Window1Min2, day3Window1Min2, day4Window1Min2, day5Window1Min2,
+                day1Window1Pisture2, day2Window1Pisture2, day3Window1Pisture2, day4Window1Pisture2, day5Window1Pisture2,
+                anchorPaneInScrollPane2, scrollPane2);
         ActualWeather actualWeather2;
         FiveDaysWeather fiveDaysWeather2;
         HourlyWeather hourlyWeather2;
 
         actualWeather2 = APIFunctionsModel.loadweatherForField(secondCityField);
-        fiveDaysWeather2 = APIFunctionsModel.loadFiveDaysWeather(secondCityField);
-        hourlyWeather2 = APIFunctionsModel.loadHourlyWeather(actualWeather2);
+        if(actualWeather2==null)
+        {
+            errorLabel2.setText("zle miasto");
+        }else {
+            errorLabel2.setText("");
+            fiveDaysWeather2 = APIFunctionsModel.loadFiveDaysWeather(secondCityField);
+            hourlyWeather2 = APIFunctionsModel.loadHourlyWeather(actualWeather2);
 
-        displayWeatherForWindow(actualWeather2, setMainActualWeather2, tempCurrentLabel2, tempMaxLabel2, tempMinLabel2, rightBackgroundPane, sunriseWindow2Label, sunsetWindow2Label, windSpeedLabel2);
-        displayTempAtAfterNoon(fiveDaysWeather2, day1Window1Day2, day2Window1Day2, day3Window1Day2, day4Window1Day2, day5Window1Day2,
-                day1Window1Max2, day2Window1Max2, day3Window1Max2, day4Window1Max2, day5Window1Max2,
-                day1Window1Min2, day2Window1Min2, day3Window1Min2, day4Window1Min2, day5Window1Min2,
-                day1Window1Pisture2, day2Window1Pisture2, day3Window1Pisture2, day4Window1Pisture2, day5Window1Pisture2);
-        displayHourlyWeather(hourlyWeather2, anchorPaneInScrollPane2, scrollPane2);
+            displayWeatherForWindow(actualWeather2, setMainActualWeather2, tempCurrentLabel2, tempMaxLabel2, tempMinLabel2, rightBackgroundPane, sunriseWindow2Label, sunsetWindow2Label, windSpeedLabel2);
+            displayTempAtAfterNoon(fiveDaysWeather2, day1Window1Day2, day2Window1Day2, day3Window1Day2, day4Window1Day2, day5Window1Day2,
+                    day1Window1Max2, day2Window1Max2, day3Window1Max2, day4Window1Max2, day5Window1Max2,
+                    day1Window1Min2, day2Window1Min2, day3Window1Min2, day4Window1Min2, day5Window1Min2,
+                    day1Window1Pisture2, day2Window1Pisture2, day3Window1Pisture2, day4Window1Pisture2, day5Window1Pisture2);
+            displayHourlyWeather(hourlyWeather2, anchorPaneInScrollPane2, scrollPane2);
+        }
+    }
+
+    private void clearAlldata(ImageView setMainActualWeather2, Label tempCurrentLabel, Label tempMaxLabel, Label tempMinLabel,
+                              AnchorPane rightBackgroundPane, Label sunriseWindowLabel, Label sunsetWindowLabel,
+                              Label windSpeedLabel, Label day1Window1Day, Label day2Window1Day, Label day3Window1Day,
+                              Label day4Window1Day, Label day5Window1Day, Label day1Window1Max, Label day2Window1Max,
+                              Label day3Window1Max, Label day4Window1Max, Label day5Window1Max, Label day1Window1Min,
+                              Label day2Window1Min, Label day3Window1Min, Label day4Window1Min, Label day5Window1Min,
+                              ImageView day1Window1Pisture, ImageView day2Window1Pisture, ImageView day3Window1Pisture,
+                              ImageView day4Window1Pisture, ImageView day5Window1Pisture, ScrollPane anchorPaneInScrollPane,
+                              AnchorPane scrollPane) {
+    setMainActualWeather2.setImage(null);
+    tempCurrentLabel.setText(null);
+        tempMaxLabel.setText(null);
+        tempMinLabel.setText(null);
+        sunriseWindowLabel.setText(null);
+        sunsetWindowLabel.setText(null);
+        windSpeedLabel.setText(null);day1Window1Day.setText(null);day2Window1Day.setText(null);day3Window1Day.setText(null);
+        day4Window1Day.setText(null);day5Window1Day.setText(null);day1Window1Max.setText(null);day2Window1Max.setText(null);
+        day3Window1Max.setText(null);day4Window1Max.setText(null);day5Window1Max.setText(null);day1Window1Min.setText(null);
+        day2Window1Min.setText(null);day3Window1Min.setText(null);day4Window1Min.setText(null);day5Window1Min.setText(null);
+        day1Window1Pisture.setImage(null);day2Window1Pisture.setImage(null);day3Window1Pisture.setImage(null);day4Window1Pisture.setImage(null);
+        day5Window1Pisture.setImage(null);anchorPaneInScrollPane.setContent(null);
+
 
     }
 

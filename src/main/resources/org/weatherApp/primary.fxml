@@ -20,7 +20,7 @@
       <Label fx:id="windSpeedLabel1" layoutX="58.0" layoutY="175.0" />
       <Label fx:id="tempMinLabel1" layoutX="57.0" layoutY="148.0" />
       <Label fx:id="tempMaxLabel1" layoutX="56.0" layoutY="122.0" />
-      <Label fx:id="tempCurrentLabel1" layoutX="87.0" layoutY="90.0" textFill="#160f90"/>
+      <Label fx:id="tempCurrentLabel1" layoutX="87.0" layoutY="90.0" textFill="#160f90" />
       <Label layoutX="14.0" layoutY="122.0" text="Max" AnchorPane.leftAnchor="14.0" />
       <Label layoutX="14.0" layoutY="148.0" text="Min" AnchorPane.leftAnchor="14.0" />
       <Label layoutX="18.0" layoutY="175.0" text="Wind" AnchorPane.leftAnchor="14.0" />
@@ -55,13 +55,15 @@
               <Font size="22.0" />
            </font>-->
         </Label>
+      <Label fx:id="errorLabel2" layoutX="428.0" layoutY="17.0" />
+      <Label fx:id="errorLabel1" layoutX="114.0" layoutY="17.0" />
         <Label layoutX="393.0" layoutY="121.0" text="Max" />
         <Label layoutX="393.0" layoutY="147.0" text="Min" />
         <Label layoutX="397.0" layoutY="174.0" text="Wind" />
         <ImageView fx:id="setMainActualWeather2" fitHeight="62.0" fitWidth="74.0" layoutX="495.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
-        <SplitPane disable="true" dividerPositions="0.5" focusTraversable="false" opacity="0.2" prefHeight="540.0" prefWidth="652.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane disable="true" dividerPositions="0.5" focusTraversable="false" layoutX="-7.0" opacity="0.2" prefHeight="540.0" prefWidth="657.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <items>
-            <AnchorPane fx:id="leftBackgroundPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="0.0" visible="true" />
+            <AnchorPane fx:id="leftBackgroundPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="324.0" visible="true" />
             <AnchorPane fx:id="rightBackgroundPane" accessibleRole="IMAGE_VIEW" depthTest="DISABLE" disable="true" minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="446.0" prefWidth="335.0" />
           </items>
         </SplitPane>
