@@ -14,6 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import org.controlsfx.control.textfield.TextFields;
+
 import org.weatherApp.model.APIFunctionsModel;
 import org.weatherApp.model.ActualWeather;
 import org.weatherApp.model.FiveDaysWeather;
@@ -100,7 +102,13 @@ public class MainWindowController {
     private AnchorPane scrollPane1;
     @FXML
     private Label windSpeedLabel1;
-
+    @FXML
+    void firstCityFieldAction(){
+        /**
+         * tutaj chce wrzucic kod ze na podniesienie klawisza w danym oknie bedzie
+         * automatycznie wyszukiwalo w klasie City podpowiedzi.
+         */
+    }
     @FXML
     void searchFirstCityAction() {
 
@@ -217,6 +225,7 @@ public class MainWindowController {
     @FXML
     private AnchorPane scrollPane2;
 
+    
     @FXML
     void searchSecondCityAction() {
         clearAlldata(setMainActualWeather2, tempCurrentLabel2, tempMaxLabel2, tempMinLabel2, rightBackgroundPane, sunriseWindow2Label, sunsetWindow2Label, windSpeedLabel2,
@@ -390,6 +399,7 @@ public class MainWindowController {
         Image image = new Image(link);
         imagePicture.setImage(image);
     }
+
 
     private String checkTimeInTable(long timezone, long dt) {
         long milis = (dt + timezone) * 1000;
