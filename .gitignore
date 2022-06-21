@@ -2,3 +2,6 @@ src/main/resources/*.txt
 src/main/java/org/weatherApp/Config.java
 target/*
 .idea/*
+src/main/resources/hourly.txt
+src/main/resources/actualWeather.txt
+src/main/resources/5daysWeather.txt

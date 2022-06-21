@@ -3,8 +3,6 @@ package org.weatherApp.model;
 import java.util.List;
 
 import static java.lang.Float.parseFloat;
-import static java.lang.Float.valueOf;
-import static java.lang.Integer.parseInt;
 
 
 public class ActualWeather {

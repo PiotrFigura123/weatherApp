@@ -1,13 +1,16 @@
 package org.weatherApp.controller;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import org.weatherApp.model.APIFunctionsModel;
 import org.weatherApp.model.ActualWeather;
 import org.weatherApp.model.FiveDaysWeather;
@@ -17,11 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 
 public class MainWindowController {
 
