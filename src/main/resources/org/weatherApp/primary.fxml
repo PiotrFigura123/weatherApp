@@ -15,7 +15,7 @@
       <Button layoutX="511.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchSecondCityAction" text="Display" />
       <Label layoutX="14.0" layoutY="54.0" text="City" />
       <Label layoutX="325.0" layoutY="54.0" text="City" />
-      <TextField fx:id="firstCityField" layoutX="48.0" layoutY="50.0" />
+      <TextField fx:id="firstCityField" layoutX="48.0" layoutY="50.0" onAction="#firstCityFieldAction" />
       <TextField fx:id="secondCityField" layoutX="360.0" layoutY="50.0" prefHeight="26.0" prefWidth="145.0" />
       <Label fx:id="windSpeedLabel1" layoutX="58.0" layoutY="175.0" />
       <Label fx:id="tempMinLabel1" layoutX="57.0" layoutY="148.0" />

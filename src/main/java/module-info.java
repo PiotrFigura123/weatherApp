@@ -2,6 +2,7 @@ module org.weatherApp {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires org.controlsfx.controls;
     opens org.weatherApp to javafx.fxml;
     exports org.weatherApp;
     exports org.weatherApp.controller;
