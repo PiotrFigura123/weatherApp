@@ -18,14 +18,10 @@ import org.weatherApp.model.ActualWeather;
 import org.weatherApp.model.FiveDaysWeather;
 import org.weatherApp.model.HourlyWeather;
 
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
 
 public class MainWindowController {
 

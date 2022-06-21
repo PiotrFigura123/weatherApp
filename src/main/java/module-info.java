@@ -1,4 +1,4 @@
-module org.example {
+module org.weatherApp {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
