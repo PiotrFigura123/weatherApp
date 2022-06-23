@@ -7,10 +7,9 @@ import static java.lang.Float.parseFloat;
 
 public class ActualWeather {
 
-    public int visibility;
+
     public long timezone;
     public long dt;
-    public String dt_txt;
     public List<WeatherItems> weather;
     ActualTemperature main;
     ActualWind wind;
@@ -18,14 +17,14 @@ public class ActualWeather {
     CityInfo city;
     CoordClass coord;
 
-    public class CoordClass {
+
+    public  class CoordClass {
         private float lon;
         private float lat;
 
         public float getLon() {
             return lon;
         }
-
         public float getLat() {
             return lat;
         }
@@ -35,7 +34,7 @@ public class ActualWeather {
         return coord;
     }
 
-    public class CityInfo {
+    public static class CityInfo {
         public long timezone;
         String name;
     }

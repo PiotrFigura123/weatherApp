@@ -10,18 +10,4 @@ import static org.hamcrest.Matchers.lessThan;
 
 public class APIFunctionsModelTest {
 
-    @Test
-    void checkIfWeatherExist(){
-        ActualWeather actualWeather = new ActualWeather();
-        assertThat(actualWeather.weather,equalTo(null  ));
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {1,2,3})
-    void checkIfPathIncludeGoodNames(int pictureName){
-
-        assertThat(pictureName, lessThan(20));
-
-
-    }
 }

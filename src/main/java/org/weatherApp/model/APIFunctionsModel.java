@@ -11,19 +11,18 @@ import java.util.Scanner;
 
 public class APIFunctionsModel {
 
-    private static String key = new Config().getAPI_KEY();
-    private static String actualWeatherString;
-    private static ActualWeather actualWeather;
 
+    private static String key = new Config().getAPI_KEY();
+    private static String weatherString;
+    private static Gson gson = new Gson();
 
     public static ActualWeather loadweatherForField(TextField firstCityField) {
         try {
 
             URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + firstCityField.getText() + "&appid=" + key);
-            actualWeatherString = connectToAPI(url);
-            return new Gson().fromJson(actualWeatherString, ActualWeather.class);
+            weatherString = connectToAPI(url);
+            return gson.fromJson(weatherString, ActualWeather.class);
         } catch (Exception er) {
-            System.out.println("zwrot altualnj pogody");
             return null;
         }
     }
@@ -31,10 +30,9 @@ public class APIFunctionsModel {
     public static FiveDaysWeather loadFiveDaysWeather(TextField firstCityField) {
         try {
             URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + firstCityField.getText() + "&appid=" + key);
-            String fiveDaysWeatherString = connectToAPI(url);
-            return new Gson().fromJson(fiveDaysWeatherString, FiveDaysWeather.class);
+            weatherString = connectToAPI(url);
+            return gson.fromJson(weatherString, FiveDaysWeather.class);
         } catch (Exception er) {
-            System.out.println("catch 5-godzinna prognoza");
             return null;
         }
     }
@@ -44,11 +42,9 @@ public class APIFunctionsModel {
         float lon = actualWeather.getCoordClass().getLon();
         try {
             URL url = new URL("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,alerts,%20daily&appid=" + key);
-            String hourlyWeatherJsonString = connectToAPI(url);
-            return new Gson().fromJson(hourlyWeatherJsonString, HourlyWeather.class);
-
+            weatherString = connectToAPI(url);
+            return gson.fromJson(weatherString, HourlyWeather.class);
         } catch (Exception er) {
-            System.out.println("catch godzinnna prognoza");
             return null;
         }
     }
@@ -62,7 +58,6 @@ public class APIFunctionsModel {
             throw new RuntimeException("HttpsResponce code " + responseCode);
         } else {
             StringBuilder actualWeatherJson = new StringBuilder();
-
             Scanner scanner = new Scanner(url.openStream());
             while (scanner.hasNext()) {
                 actualWeatherJson.append(scanner.nextLine());
