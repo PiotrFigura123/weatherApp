@@ -1,6 +1,7 @@
 package org.weatherApp.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import org.weatherApp.model.APIFunctionsModel;
@@ -21,12 +23,15 @@ import org.weatherApp.model.ActualWeather;
 import org.weatherApp.model.FiveDaysWeather;
 import org.weatherApp.model.HourlyWeather;
 
+import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.Collection;
+import java.util.ResourceBundle;
 
-public class MainWindowController {
+public class MainWindowController implements Initializable {
 
     private static final String checkout1HighTime = "13:00";
     private static final String checkout2HighTime = "14:00";
@@ -167,16 +172,31 @@ public class MainWindowController {
     @FXML
     private AnchorPane scrollPane2;
 
-    @FXML
-    void firstCityFieldAction() {
-        /**
-         * tutaj chce wrzucic kod ze na podniesienie klawisza w danym oknie bedzie
-         * automatycznie wyszukiwalo w klasie City podpowiedzi dotyczacej miasta, aby uzytkownik mogl wybrac z listy
-         */
+    /**
+     * tutaj chce wrzucic kod ze na podniesienie klawisza w danym oknie bedzie
+     * automatycznie wyszukiwalo w klasie City podpowiedzi dotyczacej miasta, aby uzytkownik mogl wybrac z listy
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        enableAutoCompletionOfCityTextFields(firstCityField);
     }
 
-    @FXML
+    private void enableAutoCompletionOfCityTextFields(TextField currentCity) {
+
+        String[] autosuggestions = {"test","testing","etc etc"};
+
+        TextFields.bindAutoCompletion(currentCity, autosuggestions);
+
+    }
+    /**
+     *  z jakiego powodu nie wyswietla mi podpowiedzi?
+     *  docelowo String[] autosuggestions ma byc zastapione Clasa City, ktora bedzie pobierala dane z pliku JSON
+     */
+
+
+        @FXML
     void searchFirstCityAction() {
+
 
         clearAlldata(setMainActualWeather1, tempCurrentLabel1, tempMaxLabel1, tempMinLabel1,
                 rightBackgroundPane, sunriseWindow1Label, sunsetWindow1Label, windSpeedLabel1,
@@ -452,4 +472,7 @@ public class MainWindowController {
         String icon = hourlyWeather.getHourly().get(i).getWeather().get(0).getIcon();
         return "/org/weatherApp/images/icons/" + icon + "@2x.png";
     }
+
+
+
 }
