@@ -81,8 +81,6 @@ public class ActualWeather {
         private String feels_like;
         private String temp_min;
         private String temp_max;
-        private String pressure;
-        private String humidity;
 
         public String getTemp() {
             return conversionFromKelvin(temp);
@@ -101,13 +99,6 @@ public class ActualWeather {
             return conversionFromKelvin(temp_max);
         }
 
-        public String getPressure() {
-            return pressure;
-        }
-
-        public String getHumidity() {
-            return humidity;
-        }
 
         private String conversionFromKelvin(String temp) {
 
@@ -117,15 +108,11 @@ public class ActualWeather {
 
     public class ActualWind {
         private String speed;
-        private String deg;
 
         public String getSpeed() {
             return speed;
         }
 
-        public String getDeg() {
-            return deg;
-        }
     }
 
     public ActualWind getActualWind() {
