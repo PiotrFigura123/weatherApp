@@ -171,7 +171,7 @@ public class MainWindowController {
     void firstCityFieldAction() {
         /**
          * tutaj chce wrzucic kod ze na podniesienie klawisza w danym oknie bedzie
-         * automatycznie wyszukiwalo w klasie City podpowiedzi.
+         * automatycznie wyszukiwalo w klasie City podpowiedzi dotyczacej miasta, aby uzytkownik mogl wybrac z listy
          */
     }
 
