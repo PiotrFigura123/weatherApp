@@ -1,2 +1,0 @@
-To launch app you need to update KEY in config file. 
-To update KEY you need to create account on https://openweathermap.org/.
